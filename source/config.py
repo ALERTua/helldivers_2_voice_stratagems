@@ -1,15 +1,25 @@
-# arrows or WASD
+# Arrows or WASD
 ARROWS = True
 
+# the name of the button that opens stratagems menu
 STRATAGEM_MENU_BUTTON = 'shift'
+
+# whether this button needs to be held while the stratagem menu is open
 STRATAGEM_MENU_BUTTON_HOLD = False
 
+# if filled, triggers only on phrases that start with these trigger words
+TRIGGER_WORDS = None
 # TRIGGER_WORDS = ['launch', 'change', 'lunch']
-TRIGGER_WORDS = ['go']
+# TRIGGER_WORDS = ['go']
 
+# Speech Recognition language
+LANGUAGE = 'en'
+
+# https://github.com/ahmetoner/whisper-asr-webservice
 # WHISPER = None
-WHISPER = 'http://192.168.1.3:8131/asr'
+WHISPER_API_URL = 'http://192.168.1.3:8131/asr'
 
+# list of aliases for each stratagem name. the names are available at source/stratagems.py
 STRATAGEM_ALIASES = {
     'resupply': ['the play', 'supply'],
     'jump_pack': ['jump', 'jump back'],
@@ -35,15 +45,16 @@ STRATAGEM_ALIASES = {
     'hmg_replacement': ['hmg', ],
     'shield_relay': ['show the relay', ],
     'tesla_tower': ['tesla', ],
-    'supply_pack': ['so, play back', ],
+    'supply_pack': ['so, play back', 'playback', ],
 }
 
-# do not press, only print
-DEBUG_KEYPRESSES = True
+# do not send the keypresses, only print
+DEBUG_KEYPRESSES = False
 
-# MICROPHONE_DEVIDE_ID = None
-MICROPHONE_DEVIDE_ID = 31
+# MICROPHONE_DEVICE_ID = None
+MICROPHONE_DEVICE_ID = 1
 
+# difflib.get_close_matches cutoff to match for closest stratagem names
 CLOSEST_MATCH_CUTOFF = 0.6
 
 PHRASE_LENGTH_LIMIT_SECONDS = 1.5

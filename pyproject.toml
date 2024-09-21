@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "helldivers_2_voice_stratagems"
+version = "0.1.0"
+description = "Send Helldivers 2 Stratagems Keypresses via voice commands recognized by Speech Recognition APIs "
+authors = ["Alexey Rubaseff <alexey.rubasheff@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "source" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+setuptools = "^75.1.0"
+global-logger = "^0.4.2"
+speechrecognition = "^3.10.4"
+requests = "^2.32.3"
+pyautogui = "^0.9.54"
+pyaudio = "^0.2.14"
+poetry = "^1.8.3"
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.8.3"
+
+[tool.poetry.scripts]
+helldivers2_stratagem = "source:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

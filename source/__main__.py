@@ -1,18 +1,23 @@
 import difflib
-import time
-import requests
-from global_logger import Log
 import io
+import time
+from pprint import pformat
+
+import requests
 import speech_recognition as sr
-import tools
-import config
+from global_logger import Log
+
+from source import config, tools
 from source.key_press import press_stratagem
 from source.stratagems import STRATAGEMS
 
 LOG = Log.get_logger(level=Log.Levels.DEBUG)
-
+LOG.info("Getting microphones. This may take up to 10 seconds")
 mics = sr.Microphone.list_working_microphones()
-mic = sr.Microphone(config.MICROPHONE_DEVIDE_ID)
+LOG.info(pformat(mics))
+LOG.info("Do not forget to fill MICROPHONE_DEVICE_ID in the config if needed")
+
+mic = sr.Microphone(config.MICROPHONE_DEVICE_ID)
 recognizer = sr.Recognizer()
 _LOOP = None
 
@@ -42,14 +47,14 @@ def command_to_stratagem(command):
 def audio_to_command(audio):
     LOG.info(f"Transcribing")
     command = None
-    if whisper_url := config.WHISPER:
+    if whisper_url := config.WHISPER_API_URL:
         LOG.info(f"Sending audio to Whisper API @ {whisper_url}")
         audio_bytes = io.BytesIO(audio.get_wav_data())
         url = whisper_url
         audio_file = {'audio_file': ('recorded_audio.wav', audio_bytes, 'audio/wav')}
         params = {
             "task": "transcribe",
-            "language": "en",
+            "language": config.LANGUAGE,
         }
         response = requests.post(url, files=audio_file, params=params)
         # LOG.info(f"response code: {response.status_code}")
@@ -67,7 +72,7 @@ def audio_to_command(audio):
     return command
 
 
-def cb(recognizer_: sr.Recognizer, audiodata: sr.AudioData):
+def callback(recognizer_: sr.Recognizer, audiodata: sr.AudioData):
     if not audiodata:
         return
 
@@ -98,14 +103,18 @@ def cb(recognizer_: sr.Recognizer, audiodata: sr.AudioData):
     tools.tts(f"Launching {command}")
 
 
-if __name__ == '__main__':
+def main():
     LOG.info(f"Listen Loop Starts")
     recognizer.energy_threshold = config.PHRASE_ENERGY_THRESHOLD
     recognizer.phrase_threshold = config.PHRASE_THRESHOLD
     recognizer.non_speaking_duration = config.PHRASE_NON_SPEAKING_DURATION
-    recognizer.listen_in_background(mic, cb, phrase_time_limit=config.PHRASE_LENGTH_LIMIT_SECONDS)
+    recognizer.listen_in_background(mic, callback, phrase_time_limit=config.PHRASE_LENGTH_LIMIT_SECONDS)
     try:
         while True:
             time.sleep(0.5)
     except KeyboardInterrupt:
         exit(0)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,18 +1,19 @@
 import random
 import time
+
 import pyautogui
 from global_logger import Log
-from stratagems import STRATAGEMS
-import config
+
+from source import config
+from source.stratagems import STRATAGEMS
 
 LOG = Log.get_logger()
 
-_gaussian_args = (36, 112, 28, 81)
+_gaussian_args = (30, 70, 28, 81)
 
 DEBUG = config.DEBUG_KEYPRESSES
 
 
-# Gaussian function to generate a random time delay
 def gaussian(min_val: int, max_val: int, sig: int, mu: int) -> float:
     while True:
         value: float = random.gauss(mu, sig)
@@ -46,6 +47,7 @@ def key_release(key: str) -> None:
     if DEBUG:
         LOG.info(f"Would have released {key} with sleep {random_key_press_sleep}")
         return
+
     pyautogui.keyUp(key)
     time.sleep(random_key_press_sleep / 1000)
 

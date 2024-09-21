@@ -1,6 +1,6 @@
 from enum import Enum
-import config
 
+from source import config
 
 if config.ARROWS:
     class Key(Enum):
