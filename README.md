@@ -14,8 +14,9 @@ This project is designed to enhance the gameplay experience of **Helldivers 2** 
 
 ## Getting Started
 
-### Prerequisites
-
+- Create `%USERPROFILE%\hd2_stratagem_asr\hd2_stratagem_asr.yaml` from [hd2_stratagem_asr.yaml.default](hd2_stratagem_asr.yaml.default)
+- Modify its values if needed
+- Launch [run.cmd](run.cmd)
 
 ### Installation
 

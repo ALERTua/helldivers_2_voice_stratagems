@@ -4,7 +4,7 @@ import time
 import pyautogui
 from global_logger import Log
 
-from source import config
+from source.config import config
 from source.stratagems import STRATAGEMS
 
 LOG = Log.get_logger()

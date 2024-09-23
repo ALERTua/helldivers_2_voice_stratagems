@@ -7,15 +7,17 @@ import requests
 import speech_recognition as sr
 from global_logger import Log
 
-from source import config, tools
+from source import tools
+from source.config import config
 from source.key_press import press_stratagem
 from source.stratagems import STRATAGEMS
 
 LOG = Log.get_logger(level=Log.Levels.DEBUG)
 LOG.info("Getting microphones. This may take up to 10 seconds")
 mics = sr.Microphone.list_working_microphones()
-LOG.info(pformat(mics))
-LOG.info("Do not forget to fill MICROPHONE_DEVICE_ID in the config if needed")
+if config.MICROPHONE_DEVICE_ID is None:
+    LOG.info(pformat(mics))
+    LOG.info("Do not forget to fill MICROPHONE_DEVICE_ID in the config if needed")
 
 mic = sr.Microphone(config.MICROPHONE_DEVICE_ID)
 recognizer = sr.Recognizer()

@@ -1,63 +1,60 @@
-# Arrows or WASD
-ARROWS = True
+import os
 
-# the name of the button that opens stratagems menu
-STRATAGEM_MENU_BUTTON = 'shift'
+from dynaconf import Dynaconf, Validator
 
-# whether this button needs to be held while the stratagem menu is open
-STRATAGEM_MENU_BUTTON_HOLD = False
+config_dirname = 'hd2_stratagem_asr'
+config_filename = f'{config_dirname}.yaml'
+default_config_filepath = f"{os.getenv('USERPROFILE', '~')}/{config_dirname}/{config_filename}"
 
-# if filled, triggers only on phrases that start with these trigger words
-TRIGGER_WORDS = None
-# TRIGGER_WORDS = ['launch', 'change', 'lunch']
-# TRIGGER_WORDS = ['go']
-
-# Speech Recognition language
-LANGUAGE = 'en'
-
-# https://github.com/ahmetoner/whisper-asr-webservice
-# WHISPER = None
-WHISPER_API_URL = 'http://192.168.1.3:8131/asr'
-
-# list of aliases for each stratagem name. the names are available at source/stratagems.py
-STRATAGEM_ALIASES = {
-    'resupply': ['the play', 'supply'],
-    'jump_pack': ['jump', 'jump back'],
-    'reinforce': ['force', 'rain', 'respawn'],
-    'railgun': ['royal', ],
-    'machine': ['machine gun', 'machinegun'],
-    'hellbomb': ['hell bomb', 'hellbump'],
-    'grenade_launcher': ['grenade launcher', 'grenade'],
-    'orbital_airburst': ['burst', 'air burst', 'albert', 'birr', 'burr'],
-    'orbital_precision': ['precision', 'orbital precision', 'prix', 'decision'],
-    'seaf': ['cif', 'thief', 'safe'],
-    'orbital_laser': ['laser', ],
-    'orbital_railcannon': ['real cannon', 'real canon', 'real calm'],
-    'eagle_rearm': ['igil rihar', 'ryarm', 'rear', ],
-    'orbital_walking': ['walking', ],
-    'orbital_120mm': ['120', ],
-    'orbital_380mm': ['380', ],
-    'eagle_110mm': ['110', ],
-    'eagle_500kg': ['500', ],
-    'eagle_smoke': ['smoke', ],
-    'orbital_gas': ['god', ],
-    'orbital_ems': ['ems', ],
-    'hmg_replacement': ['hmg', ],
-    'shield_relay': ['show the relay', ],
-    'tesla_tower': ['tesla', ],
-    'supply_pack': ['so, play back', 'playback', ],
-}
-
-# do not send the keypresses, only print
-DEBUG_KEYPRESSES = False
-
-# MICROPHONE_DEVICE_ID = None
-MICROPHONE_DEVICE_ID = 1
-
-# difflib.get_close_matches cutoff to match for closest stratagem names
-CLOSEST_MATCH_CUTOFF = 0.6
-
-PHRASE_LENGTH_LIMIT_SECONDS = 1.5
-PHRASE_ENERGY_THRESHOLD = 1200
-PHRASE_THRESHOLD = 0.3
-PHRASE_NON_SPEAKING_DURATION = 0.3
+validators = [
+    Validator('arrows', cast=bool, default=False, apply_default_on_none=True),
+    Validator('stratagem_menu_button', default='ctrl', apply_default_on_none=True),
+    Validator('stratagem_menu_button_hold', cast=bool, default=True, apply_default_on_none=True),
+    Validator('trigger_words', default=None, apply_default_on_none=True),
+    Validator('language', cast=str, default='en', apply_default_on_none=True),
+    Validator('whisper_api_url', cast=str, default=None, apply_default_on_none=True),
+    Validator('stratagem_aliases', default={}, apply_default_on_none=True),
+    Validator('debug_keypresses', cast=bool, default=False, apply_default_on_none=True),
+    Validator('microphone_device_id', default=None, apply_default_on_none=True),
+    Validator('closest_match_cutoff', cast=float, default=0.6, apply_default_on_none=True),
+    Validator('phrase_length_limit_seconds', cast=float, default=1.5, apply_default_on_none=True),
+    Validator('phrase_energy_threshold', cast=int, default=1200, apply_default_on_none=True),
+    Validator('phrase_threshold', cast=float, default=0.3, apply_default_on_none=True),
+    Validator('phrase_non_speaking_duration', cast=float, default=0.3, apply_default_on_none=True),
+]
+defaults = dict(
+    arrows=False,
+    stratagem_menu_button='ctrl',
+    stratagem_menu_button_hold=True,
+    trigger_words=None,
+    language='en',
+    whisper_api_url=None,
+    stratagem_aliases={},
+    debug_keypresses=False,
+    microphone_device_id=None,
+    closest_match_cutoff=0.6,
+    phrase_length_limit_seconds=1.5,
+    phrase_energy_threshold=1200,
+    phrase_threshold=0.3,
+    phrase_non_speaking_duration=0.3,
+)
+config = Dynaconf(
+    environments=False,
+    load_dotenv=False,
+    apply_default_on_none=True,
+    auto_cast=True,
+    lowercase_read=True,
+    yaml_loader='safe_load',
+    core_loaders=['YAML'],
+    validators=validators,
+    defaults=defaults,
+    fresh_vars=[
+        'trigger_words',
+        'stratagem_aliases',
+        'debug_keypresses',
+    ],
+    settings_files=[
+        default_config_filepath,
+        config_filename,
+    ]
+)

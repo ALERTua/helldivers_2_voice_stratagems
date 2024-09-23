@@ -1,0 +1,122 @@
+# Arrows or WASD
+arrows: true
+
+# The name of the button that opens stratagems menu
+stratagem_menu_button: ctrl
+
+# Whether this button needs to be held while the stratagem menu is open
+stratagem_menu_button_hold: true
+# stratagem_menu_button_hold: false
+
+# Trigger only on phrases that start with these trigger words
+trigger_words: null
+#trigger_words:
+#  - 'launch'
+#  - 'change'
+#  - 'lunch'
+#  - 'go'
+
+
+# Speech Recognition language
+language: en
+
+# Whisper ASR web service URL
+whisper_api_url: null
+# whisper_api_url: http://192.168.1.3:8131/asr
+
+# List of aliases for each stratagem name
+stratagem_aliases: {}
+#stratagem_aliases:
+#  resupply:
+#    - 'the play'
+#    - 'supply'
+#  jump_pack:
+#    - 'jump'
+#    - 'jump back'
+#  reinforce:
+#    - 'force'
+#    - 'rain'
+#    - 'respawn'
+#  railgun:
+#    - 'royal'
+#  machine:
+#    - 'machine gun'
+#    - 'machinegun'
+#  hellbomb:
+#    - 'hell bomb'
+#    - 'hellbump'
+#  grenade_launcher:
+#    - 'grenade launcher'
+#    - 'grenade'
+#  orbital_airburst:
+#    - 'burst'
+#    - 'air burst'
+#    - 'albert'
+#    - 'birr'
+#    - 'burr'
+#  orbital_precision:
+#    - 'precision'
+#    - 'orbital precision'
+#    - 'prix'
+#    - 'decision'
+#  seaf:
+#    - 'cif'
+#    - 'thief'
+#    - 'safe'
+#  orbital_laser:
+#    - 'laser'
+#  orbital_railcannon:
+#    - 'real cannon'
+#    - 'real canon'
+#    - 'real calm'
+#  eagle_rearm:
+#    - 'igil rihar'
+#    - 'ryarm'
+#    - 'rear'
+#  orbital_walking:
+#    - 'walking'
+#  orbital_120mm:
+#    - '120'
+#  orbital_380mm:
+#    - '380'
+#  eagle_110mm:
+#    - '110'
+#  eagle_500kg:
+#    - '500'
+#  eagle_smoke:
+#    - 'smoke'
+#  orbital_gas:
+#    - 'god'
+#  orbital_ems:
+#    - 'ems'
+#  hmg_replacement:
+#    - 'hmg'
+#  shield_relay:
+#    - 'show the relay'
+#  tesla_tower:
+#    - 'tesla'
+#  supply_pack:
+#    - 'so, play back'
+#    - 'playback'
+
+# Do not send keypresses, only print
+debug_keypresses: false
+
+# Microphone device ID
+# microphone_device_id: 1
+microphone_device_id: null
+
+# Cutoff to match for closest stratagem names. 0.6 means 60%
+closest_match_cutoff: 0.6
+
+# Phrase duration limit in seconds
+phrase_length_limit_seconds: 1.5
+
+# Relative Phrase energy threshold
+phrase_energy_threshold: 1200
+
+# Phrase minimum duration in seconds
+phrase_threshold: 0.3
+
+# Silence duration in seconds after a phrase
+phrase_non_speaking_duration: 0.3
