@@ -4,7 +4,8 @@ from dynaconf import Dynaconf, Validator
 
 config_dirname = 'hd2_stratagem_asr'
 config_filename = f'{config_dirname}.yaml'
-default_config_filepath = f"{os.getenv('USERPROFILE', '~')}/{config_dirname}/{config_filename}"
+default_config_dir = f"{os.getenv('USERPROFILE', '~')}/{config_dirname}"
+default_config_filepath = f"{default_config_dir}/{config_filename}"
 
 validators = [
     Validator('arrows', cast=bool, default=False, apply_default_on_none=True),
@@ -44,6 +45,7 @@ config = Dynaconf(
     apply_default_on_none=True,
     auto_cast=True,
     lowercase_read=True,
+    root_path=default_config_dir,
     yaml_loader='safe_load',
     core_loaders=['YAML'],
     validators=validators,
@@ -55,6 +57,7 @@ config = Dynaconf(
     ],
     settings_files=[
         default_config_filepath,
-        config_filename,
+        f"./{config_filename}",
     ]
 )
+pass
