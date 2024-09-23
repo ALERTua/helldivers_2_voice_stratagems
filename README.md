@@ -3,6 +3,8 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 [![Russian Warship Go Fuck Yourself](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/RussianWarship.svg)](https://stand-with-ukraine.pp.ua)
 
+<img src="media/icon.png" height="320">
+
 # Helldivers 2 Voice Stratagems
 
 This project is designed to enhance the gameplay experience of **Helldivers 2** by allowing players to use voice commands to activate in-game stratagems. It provides a streamlined, hands-free way to call in your stratagems more efficiently.
