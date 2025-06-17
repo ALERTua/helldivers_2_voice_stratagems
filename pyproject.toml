@@ -10,10 +10,10 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.12"
-setuptools = "^75.1.0"
+setuptools = "^78.1.1"
 global-logger = "^0.4.2"
 speechrecognition = "^3.10.4"
-requests = "^2.32.3"
+requests = "^2.32.4"
 pyautogui = "^0.9.54"
 pyaudio = "^0.2.14"
 dynaconf = {extras = ["yaml"], version = "^3.2.6"}
