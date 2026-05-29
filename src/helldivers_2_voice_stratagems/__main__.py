@@ -7,10 +7,10 @@ import requests
 import speech_recognition as sr
 from global_logger import Log
 
-from source import tools
-from source.config import config
-from source.key_press import press_stratagem
-from source.stratagems import STRATAGEMS
+from helldivers_2_voice_stratagems import tools
+from helldivers_2_voice_stratagems.config import config
+from helldivers_2_voice_stratagems.key_press import press_stratagem
+from helldivers_2_voice_stratagems.stratagems import STRATAGEMS
 
 LOG = Log.get_logger(level=Log.Levels.DEBUG)
 LOG.info("Getting microphones. This may take up to 10 seconds")

@@ -16,19 +16,16 @@ This project is designed to enhance the gameplay experience of **Helldivers 2** 
 
 ## Getting Started
 
-- Create `%USERPROFILE%\hd2_stratagem_asr\hd2_stratagem_asr.yaml` (or just `hd2_stratagem_asr.yaml` in the cloned repository folder) from [hd2_stratagem_asr.yaml.default](hd2_stratagem_asr.yaml.default)
+- Create `%USERPROFILE%\hd2_stratagem_asr.yaml` from [hd2_stratagem_asr.yaml.default](hd2_stratagem_asr.yaml.default)
 - Modify its values if needed
 
 ### Installation
 Alas, as of now, due to [Dynaconf bug](https://github.com/dynaconf/dynaconf/issues/902), this script cannot be packed into an executable file.
 
-1. Clone this repository:
+1. Install [uv](https://docs.astral.sh/uv/).
+
+2. Run the project:
 
    ```bash
-   git clone https://github.com/ALERTua/helldivers_2_voice_stratagems.git
-
-2. Install Python 3.12
-
-
-### Usage
-- Execute [run.cmd](run.cmd)
+   uvx git+https://github.com/ALERTua/helldivers_2_voice_stratagems@main
+   ```

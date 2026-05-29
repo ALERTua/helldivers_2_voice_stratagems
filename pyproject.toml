@@ -1,30 +1,22 @@
-[tool.poetry]
-name = "helldivers_2_voice_stratagems"
+[project]
+name = "helldivers-2-voice-stratagems"
 version = "0.1.0"
-description = "Send Helldivers 2 Stratagems Keypresses via voice commands recognized by Speech Recognition APIs "
-authors = ["Alexey Rubaseff <alexey.rubasheff@gmail.com>"]
+description = "Send Helldivers 2 Stratagems Keypresses via voice commands recognized by Speech Recognition APIs"
+authors = [{ name = "Alexey Rubaseff", email = "alexey.rubasheff@gmail.com" }]
 readme = "README.md"
-packages = [
-    { include = "source" },
+requires-python = ">=3.12"
+dependencies = [
+    "global-logger",
+    "speechrecognition",
+    "requests",
+    "pyautogui",
+    "pyaudio",
+    "dynaconf[yaml]",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-setuptools = "^78.1.1"
-global-logger = "^0.4.2"
-speechrecognition = "^3.10.4"
-requests = "^2.32.4"
-pyautogui = "^0.9.54"
-pyaudio = "^0.2.14"
-dynaconf = {extras = ["yaml"], version = "^3.2.6"}
-
-[tool.poetry.group.dev.dependencies]
-poetry = "^1.8.3"
-
-[tool.poetry.scripts]
-helldivers2_stratagem = "source:main"
-
+[project.scripts]
+helldivers2_stratagem = "helldivers_2_voice_stratagems:main"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.11.17,<0.12"]
+build-backend = "uv_build"

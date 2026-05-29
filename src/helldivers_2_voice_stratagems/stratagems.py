@@ -1,6 +1,6 @@
 from enum import Enum
 
-from source.config import config
+from helldivers_2_voice_stratagems.config import config
 
 if config.ARROWS:
     class Key(Enum):

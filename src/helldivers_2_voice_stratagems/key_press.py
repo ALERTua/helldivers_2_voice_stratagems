@@ -4,8 +4,8 @@ import time
 import pyautogui
 from global_logger import Log
 
-from source.config import config
-from source.stratagems import STRATAGEMS
+from helldivers_2_voice_stratagems.config import config
+from helldivers_2_voice_stratagems.stratagems import STRATAGEMS
 
 LOG = Log.get_logger()
 
