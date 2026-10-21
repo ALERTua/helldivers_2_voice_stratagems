@@ -18,5 +18,5 @@ dependencies = [
 helldivers2_stratagem = "helldivers_2_voice_stratagems:main"
 
 [build-system]
-requires = ["uv_build>=0.11.17,<0.12"]
+requires = ["uv_build>=0.11.17,<0.14"]
 build-backend = "uv_build"
